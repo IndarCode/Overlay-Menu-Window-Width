@@ -5,92 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSS -->
-   
-
-   <style>
-   body{
-   margin: 0;
-       overflow:hidden;
-   }
-   header {
-    background-color: blue;
-    padding: 30px;
-    display: table;
-    clear: both;
-    width: 100%;
-    box-sizing: border-box;
-        position: fixed;
-    top: 0;
-    width: 1349px;
-}
-.menu {
-    height: 40px;
-    width: 40px;
-    background-color: #fff;
-    float: right;
-    margin-right: 50px;
-    cursor: pointer;
-}
-  
-   .container{
-
-   		background-color: #000;
-   }
-   .container > div{
-   background-color: #f00;
-   margin-bottom: 30px;
-   }
-   .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    background-color: #f5f5f5;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-    font-size: 62px;
-    list-style: none;
-    background-color: rgb(231,229,221,);
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility .3s ease-in-out,opacity .3s ease-in-out;
-    transition-delay: 250ms;
-    z-index: 15;
-}
-h1{
-	margin-top: 0px;
-}
-.nav.active {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s;
-}
-.nav li{
-	list-style: none;
-}
-body.no-scroll {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0px;
-}
-.close {
-    background-color: #f00;
-    height: 40px;
-    width: 40px;
-    float: right;
-    position: relative;
-    top: 30px;
-    margin-right: 80px;
-}
-.holder {
-    height: 100vh;
-    overflow-y: scroll;
-}
-</style>
+<link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
 
@@ -110,8 +25,8 @@ body.no-scroll {
   		<div class="menu">
   		</div>
   	</header>
-  	<div class="holder">
-<div class="container">
+  	<div class="holder" id="holder">
+<div class="container" id="container">
 	<div class="first">
 		<h1>First</h1>
 		<p>This defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children.</p>
@@ -217,16 +132,23 @@ body.no-scroll {
 
 
   <script type="text/javascript">
+
+
+
+var scrollWidth = holder.offsetWidth - container.offsetWidth;
+console.log(scrollWidth);
   	
-  	$('.menu').on('click',function(){
-  		$('body').addClass('no-scroll');
-  		$('.nav').addClass('active');
-  	});
-  	$('.close').on('click',function(){
-  		
-  		$('.nav').removeClass('active');
-  		$('body').removeClass('no-scroll');
-  	});
+$('header').css('width', $(window).width() - scrollWidth);
+
+$('.menu').on('click',function(){
+	$('body').addClass('no-scroll');
+	$('.nav').addClass('active');
+});
+$('.close').on('click',function(){
+	
+	$('.nav').removeClass('active');
+	$('body').removeClass('no-scroll');
+});
   </script>
   </body>
 </html>
